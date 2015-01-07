@@ -95,6 +95,8 @@ class OSXRelocator(object):
                         os.path.splitext(f)[1] not in filters:
                     continue
                 fn = os.path.join(dirpath, f)
+                if os.path.islink(fn):
+                    continue
                 if not os.path.isfile(fn):
                     continue
                 self.relocate_file(fn)
